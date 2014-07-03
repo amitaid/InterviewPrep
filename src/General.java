@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 public class General {
 
   public static int fib_iter(int n) {
-    int prev = 0, cur = 0, next = 1;
+      int prev, cur = 0, next = 1;
     for (int i = 0; i < n; i++) {
       prev = cur;
       cur = next;
@@ -101,7 +101,9 @@ public class General {
   }
 
   public static int rand7() {
-    return (rand5() < 3 ? 4 : 0) + (rand5() < 3 ? 2 : 0) + (rand5() < 3 ? 1 : 0);
+      return (rand5() < 3 ? 4 : 0) +
+              (rand5() < 3 ? 2 : 0) +
+              (rand5() < 3 ? 1 : 0);
   }
 
   public static int parseInt(String str, int base) {
@@ -163,17 +165,3 @@ public class General {
 
   }
 }
-
-
-//   0 1 2
-//0 1 2 3 4 5
-//0 1 2 3 4 5 6 7
-//
-//1 000
-//2 001
-//3 010
-//3 011
-//3 100
-//3 101
-//2 110
-//1 111

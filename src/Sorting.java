@@ -15,14 +15,22 @@ public class Sorting {
 
   // testing function to check if a given array is sorted
   public static boolean isSorted(int[] arr) {
-    for (int i = 0; i < arr.length - 1; i++) { if (arr[i] > arr[i + 1]) { return false; } }
+      for (int i = 0; i < arr.length - 1; i++) {
+          if (arr[i] > arr[i + 1]) {
+              return false;
+          }
+      }
     return true;
   }
 
   // bubble sort implementation for integer arrays
   public static void bubble(int[] arr) {
     for (int i = 0; i < arr.length - 1; i++) {
-      for (int j = arr.length - 1; j > i; j--) { if (arr[j - 1] > arr[j]) { swap(arr, j - 1, j); } }
+        for (int j = arr.length - 1; j > i; j--) {
+            if (arr[j - 1] > arr[j]) {
+                swap(arr, j - 1, j);
+            }
+        }
     }
   }
 
@@ -30,7 +38,11 @@ public class Sorting {
   public static void selection(int[] arr) {
     for (int i = 0; i < arr.length - 1; i++) {
       int min = i;
-      for (int j = i + 1; j < arr.length; j++) { if (arr[min] > arr[j]) { min = j; } }
+        for (int j = i + 1; j < arr.length; j++) {
+            if (arr[min] > arr[j]) {
+                min = j;
+            }
+        }
       swap(arr, i, min);
     }
   }
@@ -38,7 +50,11 @@ public class Sorting {
   // insertion sort implementation for integer arrays
   public static void insertion(int[] arr) {
     for (int i = 1; i < arr.length; i++) {
-      for (int j = i; j > 0; j--) { if (arr[j] < arr[j - 1]) { swap(arr, j - 1, j); } }
+        for (int j = i; j > 0; j--) {
+            if (arr[j] < arr[j - 1]) {
+                swap(arr, j - 1, j);
+            }
+        }
     }
   }
 
