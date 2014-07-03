@@ -1,3 +1,7 @@
+/**
+ * Binary search tree implementation
+ */
+
 public class BinarySearchTree<T extends Comparable<T>> {
 
     private BinarySearchNode<T> root;
@@ -27,10 +31,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return root.findMinNode().getData();
     }
 
+    /**
+     * Prints the result of a BFS scan starting at the root
+     */
     public void bfsPrint() {
         root.bfsPrint();
     }
 
+    /**
+     * Prints the result of a DFS scan starting at the root (basically, inorder traversal)
+     */
     public void dfsPrint() {
         root.dfsPrint();
     }

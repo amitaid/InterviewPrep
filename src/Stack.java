@@ -1,5 +1,8 @@
 import java.util.EmptyStackException;
 
+/**
+ * Stack implementation using the linked list
+ */
 
 public class Stack<T> {
 

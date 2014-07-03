@@ -122,6 +122,7 @@ public class Sorting {
         return temp;
     }
 
+    // selects the pivot for the quicksort. arbitrary for now.
     private static int selectPivot(int[] arr, int left, int right) {
         return right;
     }

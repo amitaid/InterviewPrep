@@ -1,3 +1,7 @@
+/**
+ * Linked list implementation
+ */
+
 public class LinkedList<T> {
 
     private Link<T> head;
@@ -16,6 +20,7 @@ public class LinkedList<T> {
         return length;
     }
 
+    // Attach an item at the beginning of the list
     public LinkedList<T> prepend(T data) {
         if (data == null) {
             throw new NullPointerException();
@@ -32,6 +37,7 @@ public class LinkedList<T> {
         return this;
     }
 
+    // Attach an item at the end of the list
     public LinkedList<T> append(T data) {
         if (data == null) {
             throw new NullPointerException();
@@ -48,6 +54,7 @@ public class LinkedList<T> {
         return this;
     }
 
+    // Removes the first occurrence of the given item in the list
     public boolean removeFirst(T data) {
         if (head == null) {
             return false;
@@ -78,24 +85,7 @@ public class LinkedList<T> {
         return false;
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        Link<T> temp = head;
-
-        sb.append("[ ");
-        while (temp != null) {
-            if (temp.getNext() != null) {
-                sb.append(temp.getData().toString() + " ]->[ ");
-            } else {
-                sb.append(temp.getData());
-            }
-            temp = temp.getNext();
-        }
-
-        sb.append(" ]");
-        return sb.toString();
-    }
-
+    // Removes all occurrences of the given item
     public int removeAll(T data) {
         int removed = 0;
         Link<T> temp = head;
@@ -124,6 +114,7 @@ public class LinkedList<T> {
         return removed;
     }
 
+    // Check if an item is contained in the list
     public boolean contains(T data) {
         Link<T> link = head;
         while (link != null) {
@@ -135,6 +126,7 @@ public class LinkedList<T> {
         return false;
     }
 
+    // Count the occurrences of the given item in the list
     public int count(T data) {
         Link<T> link = head;
         int counter = 0;
@@ -145,6 +137,24 @@ public class LinkedList<T> {
             link = link.getNext();
         }
         return counter;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Link<T> temp = head;
+
+        sb.append("[ ");
+        while (temp != null) {
+            if (temp.getNext() != null) {
+                sb.append(temp.getData().toString() + " ]->[ ");
+            } else {
+                sb.append(temp.getData());
+            }
+            temp = temp.getNext();
+        }
+
+        sb.append(" ]");
+        return sb.toString();
     }
 
     public static void main(String[] args) {

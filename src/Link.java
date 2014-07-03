@@ -1,3 +1,7 @@
+/**
+ * Link in a linked list
+ */
+
 public class Link<T> {
 
     private T data;

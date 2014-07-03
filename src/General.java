@@ -1,9 +1,13 @@
 import java.util.*;
 import java.util.stream.IntStream;
 
+/**
+ * General programming question solutions
+ */
 
 public class General {
 
+    // Iterative Fibonacci sequence
     public static int fib_iter(int n) {
         int prev, cur = 0, next = 1;
         for (int i = 0; i < n; i++) {
@@ -14,6 +18,7 @@ public class General {
         return cur;
     }
 
+    // Recursive Fibonacci sequence
     public static int fib_rec(int n) {
         if (n == 0) {
             return 0;
@@ -24,6 +29,7 @@ public class General {
         }
     }
 
+    // Dynamic Fibonacci sequence
     public static int fib_memo(int n) {
         if (n == 0) {
             return 0;
@@ -36,6 +42,7 @@ public class General {
         return fib_memo(n, mem);
     }
 
+    // Dynamic Fibonacci helper
     public static int fib_memo(int n, int[] mem) {
         if (mem[n] == -1) {
             mem[n] = fib_memo(n - 1, mem) + fib_memo(n - 2, mem);
@@ -43,6 +50,7 @@ public class General {
         return mem[n];
     }
 
+    // Translates an integer into it's binary form, as a String
     public static String int2binary(int n) {
         String res = "";
         while (n > 0) {
@@ -52,6 +60,7 @@ public class General {
         return res;
     }
 
+    // Returns the most frequent element in the given array
     public static int mostFrequent(int[] arr) {
         Map<Integer, Integer> m = new HashMap<>();
         for (int n : arr) {
@@ -60,6 +69,7 @@ public class General {
         return m.keySet().stream().max((k1, k2) -> m.get(k1) - m.get(k2)).get();
     }
 
+    // Finds the only element in the given array that occurs only once.
     public static int occursOnce(int[] arr) {
         Map<Integer, Integer> m = new HashMap<>();
         for (int n : arr) {
@@ -68,7 +78,7 @@ public class General {
         return m.keySet().stream().filter(x -> m.get(x) == 1).findFirst().get();
     }
 
-    // exponent function. only accepts integer powers.
+    // Exponent function. Only accepts integer powers. log(n) time.
     public static double exponent(double base, int power) {
         double res = 1.0;
         if (power < 0) {
@@ -87,10 +97,12 @@ public class General {
         return res;
     }
 
+    // Exponent function, accepting ints as well
     public static int exponent(int base, int power) {
         return (int) exponent(1.0 * base, power);
     }
 
+    // rand5 / rand7 question. Given a rand5 function (uniform 0-5), create rand7
     public static int rand5() {
         return new Random().nextInt(6);
     }
@@ -101,6 +113,7 @@ public class General {
                 (rand5() < 3 ? 1 : 0);
     }
 
+    // Parse the given string into an integer in the given base
     public static int parseInt(String str, int base) {
         int mult = 1;
         int res = 0;
@@ -115,10 +128,12 @@ public class General {
         return res;
     }
 
+    // When not provided with a base, use base 10
     public static int parseInt(String str) {
         return parseInt(str, 10);
     }
 
+    // Prints all pairs in the given array whose sums are 10
     public static void array10Pairs(int[] arr) {
         Set<Integer> s = new HashSet<>();
         int min, max;
@@ -132,10 +147,14 @@ public class General {
         }
     }
 
+    // Prints all elements that appear in both arrays
     public static void common(int[] arr1, int[] arr2) {
         Set<Integer> s = new HashSet<>();
         Arrays.stream(arr1).forEach(s::add);
-        Arrays.stream(arr2).distinct().filter(s::contains).forEach((n) -> System.out.print(n + " "));
+        Arrays.stream(arr2).
+                distinct().
+                filter(s::contains).
+                forEach((n) -> System.out.print(n + " "));
         System.out.println();
     }
 

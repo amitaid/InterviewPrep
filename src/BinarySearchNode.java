@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Node in a binary search tree
+ */
 public class BinarySearchNode<T extends Comparable<T>> {
 
     private T data;

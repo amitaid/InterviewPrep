@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Node in a general binary tree.
+ */
 
 public class BinaryNode<T> {
 
