@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author amitay
- */
 
 public class BinarySearchNode<T extends Comparable<T>> {
 
@@ -94,8 +91,8 @@ public class BinarySearchNode<T extends Comparable<T>> {
     l.add(this);
     while (!l.isEmpty()) {
       BinarySearchNode<T> b = l.remove(0);
-      if (b.getLeft() != null) l.add(b.getLeft());
-      if (b.getRight() != null) l.add(b.getRight());
+      if (b.getLeft() != null) { l.add(b.getLeft()); }
+      if (b.getRight() != null) { l.add(b.getRight()); }
       System.out.print(b.getData() + " ");
     }
     System.out.println();
@@ -103,8 +100,8 @@ public class BinarySearchNode<T extends Comparable<T>> {
 
   public void dfsPrint() {
     System.out.print(data + " ");
-    if (left != null) left.dfsPrint();
-    if (right != null) right.dfsPrint();
+    if (left != null) { left.dfsPrint(); }
+    if (right != null) { right.dfsPrint(); }
   }
 
   public String toString() {

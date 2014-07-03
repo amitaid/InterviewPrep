@@ -2,15 +2,12 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-/**
- * @author amitay
- */
 
 public class Sorting {
 
   // swaps arr[i] with arr[j]. i and j must be legal indices of arr
   public static void swap(int[] arr, int i, int j) {
-    if (i == j) return;
+    if (i == j) { return; }
     arr[i] = arr[i] + arr[j];
     arr[j] = arr[i] - arr[j];
     arr[i] = arr[i] - arr[j];
@@ -18,42 +15,36 @@ public class Sorting {
 
   // testing function to check if a given array is sorted
   public static boolean isSorted(int[] arr) {
-    for (int i = 0; i < arr.length-1; i++)
-      if (arr[i] > arr[i+1])
-        return false;
+    for (int i = 0; i < arr.length - 1; i++) { if (arr[i] > arr[i + 1]) { return false; } }
     return true;
   }
 
   // bubble sort implementation for integer arrays
   public static void bubble(int[] arr) {
-    for (int i = 0; i < arr.length-1; i++)
-      for (int j = arr.length-1; j > i; j--)
-        if (arr[j-1] > arr[j])
-          swap(arr, j-1, j);
+    for (int i = 0; i < arr.length - 1; i++) {
+      for (int j = arr.length - 1; j > i; j--) { if (arr[j - 1] > arr[j]) { swap(arr, j - 1, j); } }
+    }
   }
 
   // selection sort implementation for integer arrays
   public static void selection(int[] arr) {
-    for (int i = 0; i < arr.length-1; i++) {
+    for (int i = 0; i < arr.length - 1; i++) {
       int min = i;
-      for (int j = i+1; j < arr.length; j++)
-        if (arr[min] > arr[j])
-          min = j;
+      for (int j = i + 1; j < arr.length; j++) { if (arr[min] > arr[j]) { min = j; } }
       swap(arr, i, min);
     }
   }
 
   // insertion sort implementation for integer arrays
   public static void insertion(int[] arr) {
-    for (int i = 1; i < arr.length; i++)
-      for (int j = i; j > 0; j--)
-        if (arr[j] < arr[j-1])
-          swap(arr, j-1, j);
+    for (int i = 1; i < arr.length; i++) {
+      for (int j = i; j > 0; j--) { if (arr[j] < arr[j - 1]) { swap(arr, j - 1, j); } }
+    }
   }
 
   // mergesort implementation for integer arrays
   public static void mergesort(int[] arr) {
-    mergesort(arr, 0, arr.length-1);
+    mergesort(arr, 0, arr.length - 1);
   }
 
   // mergesort actual implementation
@@ -70,7 +61,7 @@ public class Sorting {
 
   // mergesort join helper
   private static void mergejoin(int[] arr, int start, int mid, int end) {
-    int[] temp = new int[end-start+1];
+    int[] temp = new int[end - start + 1];
     int s = start, m = mid;
     for (int i = 0; i < temp.length; i++) {
       if (s == mid) {
@@ -86,15 +77,15 @@ public class Sorting {
 
   // quicksort
   public static void quicksort(int[] arr) {
-    quicksort(arr, 0, arr.length-1);
+    quicksort(arr, 0, arr.length - 1);
   }
 
   // quicksort implementation
   private static void quicksort(int[] arr, int start, int end) {
     if (start < end) {
       int p = partition(arr, start, end);
-      quicksort(arr, start, p-1);
-      quicksort(arr, p+1, end);
+      quicksort(arr, start, p - 1);
+      quicksort(arr, p + 1, end);
     }
   }
 

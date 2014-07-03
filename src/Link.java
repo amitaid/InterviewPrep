@@ -1,6 +1,3 @@
-/**
- * @author amitay
- */
 
 public class Link<T> {
 
@@ -14,7 +11,7 @@ public class Link<T> {
     next = null;
   }
 
-  public Link(T data, Link prev, Link next) {
+  public Link(T data, Link<T> prev, Link<T> next) {
     this.data = data;
     this.prev = prev;
     this.next = next;
@@ -28,15 +25,15 @@ public class Link<T> {
     return prev;
   }
 
-  public void setPrev(Link prev) {
-    this.prev = prev;
-  }
-
   public Link<T> getNext() {
     return next;
   }
 
-  public void setNext(Link next) {
+  public void setPrev(Link<T> prev) {
+    this.prev = prev;
+  }
+
+  public void setNext(Link<T> next) {
     this.next = next;
   }
 }

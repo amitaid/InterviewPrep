@@ -1,8 +1,5 @@
 import java.util.EmptyStackException;
 
-/**
- * @author amitay
- */
 
 public class Stack<T> {
 

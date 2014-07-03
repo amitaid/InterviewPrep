@@ -1,6 +1,3 @@
-/**
- * @author amitay
- */
 
 public class BinarySearchTree<T extends Comparable<T>> {
 

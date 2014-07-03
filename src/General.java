@@ -6,9 +6,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-/**
- * @author amitay
- */
 
 public class General {
 
@@ -28,7 +25,7 @@ public class General {
     } else if (n <= 2) {
       return 1;
     } else {
-      return fib_rec(n-1) + fib_rec(n-2);
+      return fib_rec(n - 1) + fib_rec(n - 2);
     }
   }
 
@@ -46,7 +43,7 @@ public class General {
 
   public static int fib_memo(int n, int[] mem) {
     if (mem[n] == -1) {
-      mem[n] = fib_memo(n-1, mem) + fib_memo(n-2, mem);
+      mem[n] = fib_memo(n - 1, mem) + fib_memo(n - 2, mem);
     }
     return mem[n];
   }
@@ -63,7 +60,7 @@ public class General {
   public static int mostFrequent(int[] arr) {
     Map<Integer, Integer> m = new HashMap<>();
     for (int n : arr) {
-      m.merge(n, 1, (x, y) -> x+y);
+      m.merge(n, 1, (x, y) -> x + y);
     }
     return m.keySet().stream().max((k1, k2) -> m.get(k1) - m.get(k2)).get();
   }
@@ -80,7 +77,7 @@ public class General {
   public static double exponent(double base, int power) {
     double res = 1.0;
     if (power < 0) {
-      base = 1/base;
+      base = 1 / base;
       power *= -1;
     }
     while (power > 0) {
@@ -96,7 +93,7 @@ public class General {
   }
 
   public static int exponent(int base, int power) {
-    return (int) exponent(1.0 * base, power);
+    return (int)exponent(1.0 * base, power);
   }
 
   public static int rand5() {
@@ -110,7 +107,7 @@ public class General {
   public static int parseInt(String str, int base) {
     int mult = 1;
     int res = 0;
-    for (int i = str.length()-1; i >= 0; i--) {
+    for (int i = str.length() - 1; i >= 0; i--) {
       int chr = str.charAt(i) - '0';
       if (chr >= base) {
         throw new IllegalArgumentException("Illegal number in this base.");
@@ -153,14 +150,14 @@ public class General {
     IntStream.
       generate(General::rand7).
       limit(100000).
-      forEach(n -> m7.merge(n, 1, (x,y) -> x+y));
+      forEach(n -> m7.merge(n, 1, (x, y) -> x + y));
     System.out.println(m7);
 
     Map<Integer, Integer> m5 = new HashMap<>();
     IntStream.
       generate(General::rand5).
       limit(100000).
-      forEach(n -> m5.merge(n, 1, (x,y) -> x+y));
+      forEach(n -> m5.merge(n, 1, (x, y) -> x + y));
     System.out.println(m5);
 
 

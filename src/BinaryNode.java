@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author amitay
- */
 
 public class BinaryNode<T> {
 
