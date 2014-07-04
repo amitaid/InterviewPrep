@@ -6,35 +6,25 @@ import java.util.EmptyStackException;
 
 public class Stack<T> {
 
-    private Link<T> head;
-    private int size = 0;
+    private LinkedList<T> list = new LinkedList<>();
 
     public void push(T data) {
-        Link<T> l = new Link<>(data);
-        l.setNext(head);
-        head = l;
-        size++;
+        list.prepend(data);
     }
 
     public T peek() {
-        if (head == null) {
-            throw new EmptyStackException();
-        }
-        return head.getData();
+        return list.get(0);
     }
 
     public T pop() {
-        if (head == null) {
+        if (list.getLength() == 0) {
             throw new EmptyStackException();
         }
-        T result = head.getData();
-        head = head.getNext();
-        size--;
-        return result;
+        return list.removeHead();
     }
 
     public int getSize() {
-        return size;
+        return list.getLength();
     }
 
     public static void main(String[] args) {

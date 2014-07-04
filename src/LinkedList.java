@@ -114,6 +114,62 @@ public class LinkedList<T> {
         return removed;
     }
 
+    // Remove and return the first element in the list
+    public T removeHead() {
+        if (head == null) {
+            throw new NullPointerException("No elements in the list.");
+        }
+        T temp = head.getData();
+        head = head.getNext();
+        if (head != null) {
+            head.setPrev(null);
+        }
+        length--;
+        return temp;
+    }
+
+    // Remove and return the last element in the list
+    public T removeTail() {
+        if (tail == null) {
+            throw new NullPointerException("No elements in the list.");
+        }
+        T temp = tail.getData();
+        tail = tail.getPrev();
+        if (head != null) {
+            head.setNext(null);
+        }
+        length--;
+        return temp;
+    }
+
+    public T remove(int i) {
+        if (i >= length) {
+            return null;
+        }
+        Link<T> temp = head;
+        while (i > 0) {
+            temp = temp.getNext();
+            i--;
+        }
+        temp.getPrev().setNext(temp.getNext());
+        temp.getNext().setPrev(temp.getPrev());
+        length--;
+        return temp.getData();
+    }
+
+    // Get the i'th element in the list
+    public T get(int i) {
+        if (i >= length) {
+            return null;
+        }
+        Link<T> temp = head;
+        while (i > 0) {
+            temp = temp.getNext();
+            i--;
+        }
+        return temp.getData();
+    }
+
     // Check if an item is contained in the list
     public boolean contains(T data) {
         Link<T> link = head;
@@ -146,7 +202,7 @@ public class LinkedList<T> {
         sb.append("[ ");
         while (temp != null) {
             if (temp.getNext() != null) {
-                sb.append(temp.getData().toString() + " ]->[ ");
+                sb.append(temp.getData().toString()).append(" ]->[ ");
             } else {
                 sb.append(temp.getData());
             }
