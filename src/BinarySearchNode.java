@@ -1,42 +1,26 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Node in a binary search tree
  */
-public class BinarySearchNode<T extends Comparable<T>> {
+public class BinarySearchNode<T extends Comparable<T>> extends BinaryNode<T> {
 
-    private T data;
-    private BinarySearchNode<T> parent;
-    private BinarySearchNode<T> left;
-    private BinarySearchNode<T> right;
+    private BinarySearchNode<T> parent, left, right;
 
     public BinarySearchNode(T data) {
-        this.data = data;
+        super(data);
     }
 
     public BinarySearchNode(T data, BinarySearchNode<T> parent) {
-        this.data = data;
-        this.parent = parent;
+        super(data, parent);
     }
 
-    public BinarySearchNode(T data, BinarySearchNode<T> parent, BinarySearchNode<T> left, BinarySearchNode<T> right) {
-        this(data, parent);
-        this.left = left;
-        this.right = right;
+    public BinarySearchNode(T data,
+                            BinarySearchNode<T> parent,
+                            BinarySearchNode<T> left,
+                            BinarySearchNode<T> right) {
+        super(data, parent, left, right);
     }
 
-    public T getData() {
-        return data;
-    }
 
-    public BinarySearchNode<T> getLeft() {
-        return left;
-    }
-
-    public BinarySearchNode<T> getRight() {
-        return right;
-    }
 
     public void insert(T data) {
         if (this.data.equals(data)) {
@@ -57,6 +41,7 @@ public class BinarySearchNode<T extends Comparable<T>> {
         }
     }
 
+    @Override
     public boolean contains(T data) {
         if (this.data.equals(data)) {
             return true;
@@ -67,10 +52,6 @@ public class BinarySearchNode<T extends Comparable<T>> {
         }
     }
 
-    public int depth() {
-        return 1 + Math.max(left == null ? 0 : left.depth(),
-                right == null ? 0 : right.depth());
-    }
 
     public BinarySearchNode<T> findMaxNode() {
         if (right == null) {
@@ -85,32 +66,6 @@ public class BinarySearchNode<T extends Comparable<T>> {
             return this;
         } else {
             return left.findMinNode();
-        }
-    }
-
-    public void bfsPrint() {
-        List<BinarySearchNode<T>> l = new ArrayList<>();
-        l.add(this);
-        while (!l.isEmpty()) {
-            BinarySearchNode<T> b = l.remove(0);
-            if (b.getLeft() != null) {
-                l.add(b.getLeft());
-            }
-            if (b.getRight() != null) {
-                l.add(b.getRight());
-            }
-            System.out.print(b.getData() + " ");
-        }
-        System.out.println();
-    }
-
-    public void dfsPrint() {
-        System.out.print(data + " ");
-        if (left != null) {
-            left.dfsPrint();
-        }
-        if (right != null) {
-            right.dfsPrint();
         }
     }
 

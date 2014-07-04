@@ -225,6 +225,19 @@ public class LinkedList<T> {
         return null; // Should never reach this statement.
     }
 
+    public void reverse() {
+        Link<T> temp1 = head, temp2;
+        while (temp1 != null) {
+            temp2 = temp1.getNext();
+            temp1.setNext(temp1.getPrev());
+            temp1.setPrev(temp2);
+            temp1 = temp2;
+        }
+        temp1 = head;
+        head = tail;
+        tail = temp1;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Link<T> temp = head;
@@ -244,10 +257,9 @@ public class LinkedList<T> {
         LinkedList<String> l = new LinkedList<>();
         l.append("A").append("B").append("C").append("D").append("E");
         System.out.println(l);
-        System.out.println(l.hasCycle());
-        l.tail.setNext(l.head.getNext());
-        System.out.println(l.hasCycle());
-        System.out.println(l.startOfCycle().getData());
+        l.reverse();
+        System.out.println(l);
+
     }
 
 }
