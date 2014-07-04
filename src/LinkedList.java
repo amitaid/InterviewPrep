@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Linked list implementation
  */
@@ -203,21 +206,37 @@ public class LinkedList<T> {
         return false;
     }
 
+    // Finds the first link in the list which repeats.
+    // Matches actual pointers, not internal data (shallow).
+    public Link<T> startOfCycle() {
+        if (!hasCycle()) {
+            return null;
+        }
+        Set<Link<T>> s = new HashSet<>();
+        Link<T> link = head;
+        while (link != null) {
+            if (!s.contains(link)) {
+                s.add(link);
+                link = link.getNext();
+            } else {
+                return link;
+            }
+        }
+        return null; // Should never reach this statement.
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Link<T> temp = head;
 
-        sb.append("[ ");
         while (temp != null) {
+            sb.append(temp);
             if (temp.getNext() != null) {
-                sb.append(temp.getData().toString()).append(" ]->[ ");
-            } else {
-                sb.append(temp.getData());
+                sb.append("->");
             }
             temp = temp.getNext();
         }
 
-        sb.append(" ]");
         return sb.toString();
     }
 
@@ -228,6 +247,7 @@ public class LinkedList<T> {
         System.out.println(l.hasCycle());
         l.tail.setNext(l.head.getNext());
         System.out.println(l.hasCycle());
+        System.out.println(l.startOfCycle().getData());
     }
 
 }

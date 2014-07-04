@@ -39,4 +39,8 @@ public class Link<T> {
     public void setNext(Link<T> next) {
         this.next = next;
     }
+
+    public String toString() {
+        return "[ " + data.toString() + " ]";
+    }
 }

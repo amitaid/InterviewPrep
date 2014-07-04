@@ -12,12 +12,12 @@ public class Queue<T> {
         return list.getLength();
     }
 
-    public Queue<T> insert(T data) {
+    public Queue<T> enqueue(T data) {
         list.append(data);
         return this;
     }
 
-    public T next() {
+    public T dequeue() {
         return list.removeHead();
     }
 
@@ -27,9 +27,9 @@ public class Queue<T> {
 
     public static void main(String[] args) {
         Queue<Integer> q = new Queue<>();
-        q.insert(0).insert(1).insert(2);
+        q.enqueue(0).enqueue(1).enqueue(2);
         while (q.hasNext()) {
-            System.out.println(q.next());
+            System.out.println(q.dequeue());
         }
     }
 
