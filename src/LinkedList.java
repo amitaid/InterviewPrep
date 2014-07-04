@@ -8,13 +8,6 @@ public class LinkedList<T> {
     private Link<T> tail;
     private int length = 0;
 
-    public LinkedList() {
-    }
-
-    public LinkedList(T data) {
-        head = tail = new Link<>(data);
-        length = 1;
-    }
 
     public int getLength() {
         return length;
@@ -195,6 +188,21 @@ public class LinkedList<T> {
         return counter;
     }
 
+    public boolean hasCycle() {
+        if (length <= 1) {
+            return false;
+        }
+        Link<T> fast = head, slow = head;
+        while (fast.getNext() != null && fast.getNext().getNext() != null) {
+            fast = fast.getNext().getNext();
+            slow = slow.getNext();
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Link<T> temp = head;
@@ -214,13 +222,12 @@ public class LinkedList<T> {
     }
 
     public static void main(String[] args) {
-        LinkedList<String> l = new LinkedList<>("A");
-        l.append("A").append("B").append("A").append("A").append("C").append("D").append("A");
+        LinkedList<String> l = new LinkedList<>();
+        l.append("A").append("B").append("C").append("D").append("E");
         System.out.println(l);
-        System.out.println(l.count("A"));
-        System.out.println(l.removeAll("A"));
-        System.out.println(l);
-        System.out.println(l.count("A"));
+        System.out.println(l.hasCycle());
+        l.tail.setNext(l.head.getNext());
+        System.out.println(l.hasCycle());
     }
 
 }
