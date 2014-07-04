@@ -2,6 +2,9 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+/**
+ * Sorting algorithm implementations
+ */
 
 public class Sorting {
 
