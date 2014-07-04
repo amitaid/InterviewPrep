@@ -17,14 +17,18 @@ public class Stack<T> {
     }
 
     public T pop() {
-        if (list.getLength() == 0) {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
         return list.removeHead();
     }
 
-    public int getSize() {
+    public int size() {
         return list.getLength();
+    }
+
+    public boolean isEmpty() {
+        return list.isEmpty();
     }
 
     public static void main(String[] args) {

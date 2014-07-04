@@ -16,6 +16,10 @@ public class LinkedList<T> {
         return length;
     }
 
+    public boolean isEmpty() {
+        return length == 0;
+    }
+
     // Attach an item at the beginning of the list
     public LinkedList<T> prepend(T data) {
         if (data == null) {

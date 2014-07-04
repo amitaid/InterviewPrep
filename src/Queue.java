@@ -12,17 +12,24 @@ public class Queue<T> {
         return list.getLength();
     }
 
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
+    public boolean hasNext() {
+        return !isEmpty();
+    }
+
     public Queue<T> enqueue(T data) {
         list.append(data);
         return this;
     }
 
     public T dequeue() {
+        if (list.isEmpty()) {
+            throw new NullPointerException("Attempt to dequeue from an empty queue.");
+        }
         return list.removeHead();
-    }
-
-    public boolean hasNext() {
-        return size() > 0;
     }
 
     public static void main(String[] args) {
