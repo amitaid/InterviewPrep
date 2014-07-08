@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 public class OverlappingPassword {
 
+    // Take an array and a start and end index, and return that slice as an integer.
     public static int arrRangeToInt(int[] arr, int start, int end) {
         int mult = 1;
         int res = 0;
@@ -22,20 +23,22 @@ public class OverlappingPassword {
     public static String getPasswords(int length) {
 
         int size = General.exponent(10, length);
-        boolean[] exists = new boolean[size];
+        boolean[] exists = new boolean[size]; // There are 10^len possible numbers
+        int[] order =
+            new int[size + length - 1]; // The length of the result is size + length - 1, with maximum overlap.
         exists[0] = true;
-        int[] order = new int[size + length - 1];
-        int index = length;
+        int index = length; // Set the first entered number to be "0"*len
         int chr = 0;
 
         while (index < order.length) {
-            if (chr > 9) {
+            if (chr > 9) { // We ran out of options. Go back one char and increment it.
                 exists[arrRangeToInt(order, index - length, index)] = false;
                 index--;
                 chr = order[index] + 1;
-            } else if (exists[10 * arrRangeToInt(order, index - length + 1, index) + chr]) {
+            } else if (exists[10 * arrRangeToInt(order, index - length + 1, index) +
+                              chr]) { // Already added this number. Move on.
                 chr++;
-            } else {
+            } else { // Legal number that hasn't been entered yet. Add it and reset chr.
                 order[index] = chr;
                 chr = 0;
                 index++;
