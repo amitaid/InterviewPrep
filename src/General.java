@@ -1,4 +1,9 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 /**
@@ -102,6 +107,31 @@ public class General {
         return (int) exponent(1.0 * base, power);
     }
 
+    // Silly IntStream way. O(n) time.
+    public static int power(int base, int power) {
+        return IntStream.
+            generate(() -> base).
+            limit(power).
+            reduce(1, (x, y) -> x * y);
+    }
+
+    // Newton method sqrt
+    public static double sqrt(double num) {
+        if (num < 0) {
+            throw new IllegalArgumentException("Negative values not supported.");
+        }
+        if (num == 0) {
+            return num;
+        }
+
+        double cur = num / 2;
+        while (Math.abs(cur * cur - num) > 0.000001) {
+            cur = cur - (cur * cur - num) / (2 * cur);       // f(x) = x^2 - num, f'(x) = 2x, g(x) = x_0 - f(x)/f'(x)
+        }
+
+        return cur;
+    }
+
     // rand5 / rand7 question. Given a rand5 function (uniform 0-5), create rand7
     public static int rand5() {
         return new Random().nextInt(6);
@@ -160,21 +190,23 @@ public class General {
 
     public static void main(String[] args) {
 
-        common(new int[]{1, 2, 3, 4, 6, 9}, new int[]{1, 3, 5, 7, 9, 9});
+        System.out.println(sqrt(9));
 
-        Map<Integer, Integer> m7 = new HashMap<>();
-        IntStream.
-                generate(General::rand7).
-                limit(100000).
-                forEach(n -> m7.merge(n, 1, (x, y) -> x + y));
-        System.out.println(m7);
-
-        Map<Integer, Integer> m5 = new HashMap<>();
-        IntStream.
-                generate(General::rand5).
-                limit(100000).
-                forEach(n -> m5.merge(n, 1, (x, y) -> x + y));
-        System.out.println(m5);
+        //common(new int[]{1, 2, 3, 4, 6, 9}, new int[]{1, 3, 5, 7, 9, 9});
+        //
+        //Map<Integer, Integer> m7 = new HashMap<>();
+        //IntStream.
+        //        generate(General::rand7).
+        //        limit(100000).
+        //        forEach(n -> m7.merge(n, 1, (x, y) -> x + y));
+        //System.out.println(m7);
+        //
+        //Map<Integer, Integer> m5 = new HashMap<>();
+        //IntStream.
+        //        generate(General::rand5).
+        //        limit(100000).
+        //        forEach(n -> m5.merge(n, 1, (x, y) -> x + y));
+        //System.out.println(m5);
 
     }
 }
