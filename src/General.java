@@ -191,7 +191,7 @@ public class General {
     // Calculates the given String's arithmetic expression. Must consist of the format a(op b)*, and the result must be int.
     public static int arithmeticString(String input) {
         if (input.isEmpty()) {
-            return 0;
+            throw new IllegalArgumentException();
         }
         boolean firstMinus = input.charAt(0) == '-';
         if (firstMinus) {
@@ -205,9 +205,6 @@ public class General {
         String operations = input.replaceAll("[0123456789]+", "");
         String[] opOrder = new String[]{"*/", "+-"};
         int last = 0;
-
-        System.out.println(Arrays.toString(numbers));
-        System.out.println(operations);
 
         for (String op : opOrder) {
             for (int i = 0; i < operations.length(); i++) {
