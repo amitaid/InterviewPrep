@@ -1,7 +1,10 @@
 import java.util.Arrays;
 
 /**
- * @author amitay
+ * Solution to the overlapping password string problem
+ * ---------------------------------------------------
+ * Return the shortest possible string which contains as a substring all numbers
+ * of length n from 0 to 10^n - 1. For n=4, the strings "0000" to "9999".
  */
 
 public class OverlappingPassword {
@@ -16,19 +19,15 @@ public class OverlappingPassword {
         return res;
     }
 
-    public static int arrEndToInt(int[] arr, int length) {
-        return arrRangeToInt(arr, arr.length - length, arr.length);
-    }
-
     public static String getPasswords(int length) {
 
         int size = General.exponent(10, length);
         boolean[] exists = new boolean[size];
+        exists[0] = true;
         int[] order = new int[size + length - 1];
-
         int index = length;
         int chr = 0;
-        exists[0] = true;
+
         while (index < order.length) {
             if (chr > 9) {
                 exists[arrRangeToInt(order, index - length, index)] = false;
@@ -43,13 +42,14 @@ public class OverlappingPassword {
                 exists[arrRangeToInt(order, index - length, index)] = true;
             }
         }
+
         StringBuilder sb = new StringBuilder();
         Arrays.stream(order).forEach(sb::append);
         return sb.toString();
     }
 
     public static void main(String[] args) {
-        int len = 4;
+        int len = 5;
         System.out.println(getPasswords(len));
 
     }
