@@ -188,9 +188,58 @@ public class General {
         System.out.println();
     }
 
+    // Calculates the given String's arithmetic expression. Must consist of the format a(op b)*, and the result must be int.
+    public static int arithmeticString(String input) {
+        if (input.isEmpty()) {
+            return 0;
+        }
+        boolean firstMinus = input.charAt(0) == '-';
+        if (firstMinus) {
+            input = input.substring(1);
+        }
+        int[] numbers = Arrays.stream(input.split("[-+*/]")).mapToInt(Integer::parseInt).toArray();
+        if (firstMinus) {
+            numbers[0] = -numbers[0];
+        }
+
+        String operations = input.replaceAll("[0123456789]+", "");
+        String[] opOrder = new String[]{"*/", "+-"};
+        int last = 0;
+
+        System.out.println(Arrays.toString(numbers));
+        System.out.println(operations);
+
+        for (String op : opOrder) {
+            for (int i = 0; i < operations.length(); i++) {
+                if (op.indexOf(operations.charAt(i)) >= 0) {
+                    last = i;
+                    int value;
+                    switch (operations.charAt(i)) {
+                        case '+':
+                            value = numbers[i] + numbers[i + 1];
+                            break;
+                        case '-':
+                            value = numbers[i] - numbers[i + 1];
+                            break;
+                        case '*':
+                            value = numbers[i] * numbers[i + 1];
+                            break;
+                        case '/':
+                            value = numbers[i] / numbers[i + 1];
+                            break;
+                        default:
+                            throw new IllegalArgumentException();
+                    }
+                    numbers[i] = numbers[i + 1] = value;
+                }
+            }
+        }
+        return numbers[last];
+    }
+
     public static void main(String[] args) {
 
-        System.out.println(sqrt(9));
+        System.out.println(arithmeticString("-7+3"));
 
         //common(new int[]{1, 2, 3, 4, 6, 9}, new int[]{1, 3, 5, 7, 9, 9});
         //
