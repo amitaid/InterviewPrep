@@ -45,13 +45,13 @@ public abstract class BinaryNode<T> {
 
     public boolean contains(T data) {
         return this.data.equals(data) ||
-               (left != null && left.contains(data)) ||
-               (right != null && right.contains(data));
+                (left != null && left.contains(data)) ||
+                (right != null && right.contains(data));
     }
 
     public int depth() {
         return 1 + Math.max(left == null ? 0 : left.depth(),
-                            right == null ? 0 : right.depth());
+                right == null ? 0 : right.depth());
     }
 
     public void bfsPrint() {

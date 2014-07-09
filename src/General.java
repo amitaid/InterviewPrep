@@ -1,9 +1,4 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.IntStream;
 
 /**
@@ -110,9 +105,9 @@ public class General {
     // Silly IntStream way. O(n) time.
     public static int power(int base, int power) {
         return IntStream.
-            generate(() -> base).
-            limit(power).
-            reduce(1, (x, y) -> x * y);
+                generate(() -> base).
+                limit(power).
+                reduce(1, (x, y) -> x * y);
     }
 
     // Newton method sqrt

@@ -21,7 +21,6 @@ public class BinarySearchNode<T extends Comparable<T>> extends BinaryNode<T> {
     }
 
 
-
     public void insert(T data) {
         if (this.data.equals(data)) {
             return;

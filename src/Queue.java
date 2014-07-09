@@ -6,7 +6,8 @@ public class Queue<T> {
 
     LinkedList<T> list = new LinkedList<>();
 
-    public Queue() {}
+    public Queue() {
+    }
 
     public int size() {
         return list.getLength();

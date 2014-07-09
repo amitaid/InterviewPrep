@@ -25,7 +25,7 @@ public class OverlappingPassword {
         int size = General.exponent(10, length);
         boolean[] exists = new boolean[size]; // There are 10^len possible numbers
         int[] order =
-            new int[size + length - 1]; // The length of the result is size + length - 1, with maximum overlap.
+                new int[size + length - 1]; // The length of the result is size + length - 1, with maximum overlap.
         exists[0] = true;
         int index = length; // Set the first entered number to be "0"*len
         int chr = 0;
@@ -36,7 +36,7 @@ public class OverlappingPassword {
                 index--;
                 chr = order[index] + 1;
             } else if (exists[10 * arrRangeToInt(order, index - length + 1, index) +
-                              chr]) { // Already added this number. Move on.
+                    chr]) { // Already added this number. Move on.
                 chr++;
             } else { // Legal number that hasn't been entered yet. Add it and reset chr.
                 order[index] = chr;
