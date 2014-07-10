@@ -119,7 +119,7 @@ public class General {
             return num;
         }
 
-        double cur = num / 2;
+        double cur = num / 2;  // Initial guess
         while (Math.abs(cur * cur - num) > 0.000001) {
             cur = cur - (cur * cur - num) / (2 * cur);       // f(x) = x^2 - num, f'(x) = 2x, g(x) = x_0 - f(x)/f'(x)
         }
@@ -229,9 +229,42 @@ public class General {
         return numbers[last];
     }
 
+    // Rotate the given array left by 90 degrees
+    public static void rotateLeft(int[][] arr, int x, int y) {
+        int p1 = arr[x][y];
+        int size = arr.length - 1;
+        int p2 = arr[size - y][x];
+        int p3 = arr[size - x][size - y];
+        arr[x][y] = arr[y][size - x];
+        arr[size - y][x] = p1;
+        arr[size - x][size - y] = p2;
+        arr[y][size - x] = p3;
+    }
+
+    public static void rotateLeft(int[][] arr) {
+        for (int i = 0; i < arr.length / 2 + arr.length % 2; i++) {
+            for (int j = 0; j < arr.length / 2; j++) {
+                rotateLeft(arr, i, j);
+            }
+        }
+    }
+
+    public static void rotateRight(int[][] arr) {
+        rotateLeft(arr);
+        rotateLeft(arr);
+        rotateLeft(arr);
+    }
+
     public static void main(String[] args) {
 
-        System.out.println(arithmeticString("-7+3"));
+        int[][] arr = {{1, 1, 1, 1, 1}, {2, 2, 2, 2, 2}, {3, 3, 3, 3, 3}, {4, 4, 4, 4, 4}, {5, 5, 5, 5, 5}};
+        for (int[] anArr : arr) {
+            System.out.println(Arrays.toString(anArr));
+        }
+        rotateRight(arr);
+        for (int[] anArr : arr) {
+            System.out.println(Arrays.toString(anArr));
+        }
 
         //common(new int[]{1, 2, 3, 4, 6, 9}, new int[]{1, 3, 5, 7, 9, 9});
         //

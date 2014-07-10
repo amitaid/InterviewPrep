@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -86,8 +87,60 @@ public class Strings {
         }
     }
 
+    public static boolean unique(String str) {
+        HashSet<Character> s = new HashSet<>();
+        for (int i = 0; i < str.length(); i++) {
+            if (s.contains(str.charAt(i))) {
+                return false;
+            } else {
+                s.add(str.charAt(i));
+            }
+        }
+        return true;
+    }
+
+    public static void spaceReplacer(char[] c, int len) {
+        int spaces = 0;
+        for (int i = 0; i < len; i++) {
+            if (c[i] == ' ') spaces++;
+        }
+        if (spaces == 0) return;
+
+        int realLen = len + 2 * spaces - 1;
+
+        for (int i = len - 1; i >= 0; i--) {
+            if (c[i] == ' ') {
+                c[realLen--] = '0';
+                c[realLen--] = '2';
+                c[realLen--] = '%';
+            } else {
+                c[realLen--] = c[i];
+            }
+        }
+    }
+
+    public static String compress(String str) {
+        if (str.length() <= 2) {
+            return str;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int i = 0, count = 1;
+
+        while (i < str.length()) {
+            sb.append(str.charAt(i++));
+            while (i < str.length() && str.charAt(i) == str.charAt(i - 1)) {
+                count++;
+                i++;
+            }
+            sb.append(count);
+            count = 1;
+        }
+
+        return (str.length() <= sb.length() ? str : sb.toString());
+    }
 
     public static void main(String[] args) {
-        System.out.println(intOrDouble("0.2"));
+        System.out.println(compress("abccccccccccccccccc"));
     }
 }
