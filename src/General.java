@@ -255,16 +255,52 @@ public class General {
         rotateLeft(arr);
     }
 
+    public static void resetRowColumn(int[][] arr) {
+        if (arr.length == 0) {
+            return;
+        }
+        boolean[] rows = new boolean[arr.length];
+        boolean[] cols = new boolean[arr[0].length];
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                if (arr[i][j] == 0) {
+                    rows[i] = true;
+                    cols[j] = true;
+                }
+            }
+        }
+
+        for (int i = 0; i < rows.length; i++) {
+            if (rows[i]) {
+                for (int j = 0; j < arr[0].length; j++) {
+                    arr[i][j] = 0;
+                }
+            }
+        }
+        for (int i = 0; i < cols.length; i++) {
+            if (cols[i]) {
+                for (int j = 0; j < arr.length; j++) {
+                    arr[j][i] = 0;
+                }
+            }
+        }
+
+
+    }
+
     public static void main(String[] args) {
 
-        int[][] arr = {{1, 1, 1, 1, 1}, {2, 2, 2, 2, 2}, {3, 3, 3, 3, 3}, {4, 4, 4, 4, 4}, {5, 5, 5, 5, 5}};
+        int[][] arr = {{1, 0, 1, 1, 1}, {2, 2, 2, 2, 2}, {3, 3, 0, 3, 3}, {4, 4, 4, 4, 4}, {5, 5, 5, 5, 0}};
         for (int[] anArr : arr) {
             System.out.println(Arrays.toString(anArr));
         }
-        rotateRight(arr);
+        resetRowColumn(arr);
+        System.out.println();
         for (int[] anArr : arr) {
             System.out.println(Arrays.toString(anArr));
         }
+
 
         //common(new int[]{1, 2, 3, 4, 6, 9}, new int[]{1, 3, 5, 7, 9, 9});
         //
