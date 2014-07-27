@@ -1,4 +1,9 @@
-import java.util.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.stream.IntStream;
 
 /**
@@ -203,7 +208,7 @@ public class General {
 
         for (String op : opOrder) {
             for (int i = 0; i < operations.length(); i++) {
-                if (op.indexOf(operations.charAt(i)) >= 0) {
+                if (op.contains(Character.toString(operations.charAt(i)))) {
                     last = i;
                     int value;
                     switch (operations.charAt(i)) {
@@ -230,7 +235,7 @@ public class General {
     }
 
     // Rotate the given array left by 90 degrees
-    public static void rotateLeft(int[][] arr, int x, int y) {
+    private static void rotateLeft(int[][] arr, int x, int y) {
         int p1 = arr[x][y];
         int size = arr.length - 1;
         int p2 = arr[size - y][x];
@@ -285,21 +290,80 @@ public class General {
                 }
             }
         }
+    }
 
+    public static int makeChange(int amount) {
+        int[] coinSet = {25, 10, 5, 1};
+        return makeChange(amount, coinSet, 0);
+    }
 
+    public static int makeChange(int amount, int[] coinSet, int coin) {
+        if (coin >= coinSet.length || amount < 0) {
+            return 0;
+        }
+
+        if (amount == 0) {
+            return 1;
+        }
+
+        int res = 0;
+
+        while (coin < coinSet.length) {
+            res += makeChange(amount - coinSet[coin], coinSet, coin);
+            coin++;
+        }
+
+        return res;
+    }
+
+    public static boolean isPrime(long n) {
+        if (n <= 1 || n % 2 == 0) {
+            return false;
+        }
+
+        for (int i = 3; i <= Math.sqrt(n); i += 2) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void printFivePrimes() {
+        long n = (long) Math.pow(10, 10);
+        int count = 0;
+        while (n % 6 != 0) {
+            n++;
+        }
+
+        while (count < 5) {
+            if (isPrime(n - 1)) {
+                System.out.println(n - 1);
+                count++;
+            }
+            if (count < 5 && isPrime(n + 1)) {
+                System.out.println(n + 1);
+                count++;
+            }
+            n += 6;
+        }
     }
 
     public static void main(String[] args) {
 
-        int[][] arr = {{1, 0, 1, 1, 1}, {2, 2, 2, 2, 2}, {3, 3, 0, 3, 3}, {4, 4, 4, 4, 4}, {5, 5, 5, 5, 0}};
-        for (int[] anArr : arr) {
-            System.out.println(Arrays.toString(anArr));
-        }
-        resetRowColumn(arr);
-        System.out.println();
-        for (int[] anArr : arr) {
-            System.out.println(Arrays.toString(anArr));
-        }
+        printFivePrimes();
+
+
+//        int[][] arr = {{1, 0, 1, 1, 1}, {2, 2, 2, 2, 2}, {3, 3, 0, 3, 3}, {4, 4, 4, 4, 4}, {5, 5, 5, 5, 0}};
+//        for (int[] anArr : arr) {
+//            System.out.println(Arrays.toString(anArr));
+//        }
+//        resetRowColumn(arr);
+//        System.out.println();
+//        for (int[] anArr : arr) {
+//            System.out.println(Arrays.toString(anArr));
+//        }
 
 
         //common(new int[]{1, 2, 3, 4, 6, 9}, new int[]{1, 3, 5, 7, 9, 9});

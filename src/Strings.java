@@ -82,7 +82,7 @@ public class Strings {
             System.out.println(perm);
         } else {
             for (int i = 0; i < str.length(); i++) {
-                permHelper(str.substring(0, i) + str.substring(i + 1, str.length()), perm + str.charAt(i));
+                permHelper(str.substring(0, i) + str.substring(i + 1), perm + str.charAt(i));
             }
         }
     }
@@ -141,6 +141,6 @@ public class Strings {
     }
 
     public static void main(String[] args) {
-        System.out.println(compress("abccccccccccccccccc"));
+        permutations("abcde");
     }
 }
