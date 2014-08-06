@@ -71,17 +71,18 @@ public class Sorting {
     // mergesort actual implementation
     private static void mergesort(int[] arr, int start, int end) {
         if (end - start > 1) {
-            int mid = (end + start) / 2 + 1;
+            int mid = (end + start) / 2;
             mergesort(arr, start, mid - 1);
             mergesort(arr, mid, end);
-            mergejoin(arr, start, mid, end);
+            mergejoin(arr, start, end);
         } else if (end - start == 1 && arr[start] > arr[end]) {
             swap(arr, start, end);
         }
     }
 
     // mergesort join helper
-    private static void mergejoin(int[] arr, int start, int mid, int end) {
+    private static void mergejoin(int[] arr, int start, int end) {
+        int mid = (start + end) / 2;
         int[] temp = new int[end - start + 1];
         int s = start, m = mid;
         for (int i = 0; i < temp.length; i++) {
@@ -130,11 +131,20 @@ public class Sorting {
         return right;
     }
 
+    private static void mergeSorted(int[] a, int[] b) {
+        int i = 0;
+        int j = a.length - b.length - 1;
+        System.arraycopy(b, 0, a, j, b.length);
+        while (i < a.length) {
+
+        }
+    }
+
     public static void main(String[] args) {
         Random r = new Random();
         int[] arr = IntStream.generate(() -> r.nextInt(100)).limit(20).toArray();
         System.out.println("Before: " + Arrays.toString(arr));
-        Sorting.quicksort(arr);
+        Sorting.mergesort(arr);
         System.out.println("After:  " + Arrays.toString(arr));
     }
 
