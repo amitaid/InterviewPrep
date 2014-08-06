@@ -1,9 +1,4 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.IntStream;
 
 /**
@@ -294,47 +289,17 @@ public class General {
 
     }
 
-    // Generates all subsets of the given set
-    public static Set<Set<Integer>> subsets(Set<Integer> s) {
-        Set<Set<Integer>> res = new HashSet<>();
-        res.add(new HashSet<>());      // Empty set, starting point
-
-        for (Integer i : s) {  // For every item, copy the existing sets, and add it
-            Set<Set<Integer>> temp = new HashSet<>();
-            for (Set<Integer> set : res) {
-                Set<Integer> temp2 = new HashSet<>();
-                temp2.addAll(set);
-                temp2.add(i);
-                temp.add(temp2);
-            }
-            res.addAll(temp);
-        }
-
-        return res;
-    }
-
-
     public static void main(String[] args) {
 
-
-        //Set<Integer> set = new HashSet<>();
-        //set.addAll(Arrays.asList(1, 2, 3, 4));
-        //Set<Set<Integer>> subset = subsets(set);
-        //System.out.println(subset.size());
-        //for (Set<Integer> set1 : subset) {
-        //    System.out.println(set1.toString());
-        //}
-
-
-        //int[][] arr = {{1, 0, 1, 1, 1}, {2, 2, 2, 2, 2}, {3, 3, 0, 3, 3}, {4, 4, 4, 4, 4}, {5, 5, 5, 5, 0}};
-        //for (int[] anArr : arr) {
-        //    System.out.println(Arrays.toString(anArr));
-        //}
-        //resetRowColumn(arr);
-        //System.out.println();
-        //for (int[] anArr : arr) {
-        //    System.out.println(Arrays.toString(anArr));
-        //}
+        int[][] arr = {{1, 0, 1, 1, 1}, {2, 2, 2, 2, 2}, {3, 3, 0, 3, 3}, {4, 4, 4, 4, 4}, {5, 5, 5, 5, 0}};
+        for (int[] anArr : arr) {
+            System.out.println(Arrays.toString(anArr));
+        }
+        resetRowColumn(arr);
+        System.out.println();
+        for (int[] anArr : arr) {
+            System.out.println(Arrays.toString(anArr));
+        }
 
 
         //common(new int[]{1, 2, 3, 4, 6, 9}, new int[]{1, 3, 5, 7, 9, 9});
