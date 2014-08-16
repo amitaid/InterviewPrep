@@ -91,7 +91,7 @@ public class Sorting {
             } else if (m > end) {
                 temp[i] = arr[s++];
             } else {
-                temp[i] = arr[s] < arr[m] ? arr[s++] : arr[m++];
+                temp[i] = arr[s] <= arr[m] ? arr[s++] : arr[m++];
             }
         }
         System.arraycopy(temp, 0, arr, start, temp.length);
@@ -129,15 +129,6 @@ public class Sorting {
     // selects the pivot for the quicksort. arbitrary for now.
     private static int selectPivot(int[] arr, int left, int right) {
         return right;
-    }
-
-    private static void mergeSorted(int[] a, int[] b) {
-        int i = 0;
-        int j = a.length - b.length - 1;
-        System.arraycopy(b, 0, a, j, b.length);
-        while (i < a.length) {
-
-        }
     }
 
     public static void main(String[] args) {
