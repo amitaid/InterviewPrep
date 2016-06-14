@@ -179,11 +179,35 @@ def add_arrays(a1, a2):
 
 	return res
 
+def add_and_swap_mid(list1, list2):
+	res = list1 + list2
+	mid = len(list1)
+	if res[mid-1] > res[mid]:
+		res[mid-1], res[mid] = res[mid], res[mid-1]
+	return res
+
 
 def reform_arrays(a1, a2):
-	if not a1 or not a2:
-		return a1 + a2
-	return [max(a1[0], a2[0]), min(a1[0], a2[0])] + reform_arrays(a1[1:], a2[1:])
+	res = [a1[0]]
+	temp = [a1[1], a2[0]]
+	a1, a2 = a1[2:], a2[1:]
+
+	while len(temp) > 2:
+		temp = sorted(temp)
+		res = res[:-1] + [temp[2], temp[0], temp[1]]
+		temp = list()
+		if a1:
+			temp.append(a1[0])
+			a1 = a1[1:]
+		if a2:
+			temp.append(a2[0])
+			a2 = a2[1:]
+		temp.append(res[-1])
+
+	if len(temp) == 2:
+		return res[:-1] + sorted(temp, reverse=True)
+	else:
+		return res
 
 def reform_arrays_tailrec(a1, a2):
 	def helper(a1, a2, result):
@@ -195,22 +219,21 @@ def reform_arrays_tailrec(a1, a2):
 
 def find_palindrome(s):
 	l = len(s)
-
 	mat = [[0 for n in xrange(l+1)] for i in xrange(l)]
 
+	# Init dynamic stuff
 	for i in xrange(l):
 		mat[i][0] = 1
 	for i in xrange(l):
 		mat[i][1] = 1
 
+	# Fill array
 	for n in xrange(2, l+1):
 		for i in xrange(l-n+1):
-			# print i, n, s[i], s[i+n-1], mat[i+1][n-2]
 			if mat[i+1][n-2] and s[i] == s[i+n-1]:
 				mat[i][n] = 1
 
-	# print '\n'.join([''.join([str(ind) for ind in line]) for line in mat])
-
+	# Print filled elements
 	for i in xrange(l):
 		for n in xrange(2, l+1):
 			if mat[i][n]:
@@ -226,11 +249,11 @@ def compare_str(s1, s2):
 
 
 if __name__ == '__main__':
-	print compare_str("aaa", "aaba")
+	# print compare_str("aaa", "aaba")
 	# find_palindrome("aa")
 	# find_palindrome("ababa")
 
-	# print reform_arrays_tailrec([3, 1, 2, 1], [9, 4, 5, 3])
+	print reform_arrays([100, 10, 11], [90, 0, 50])
 	# print '\n'.join(merge_strings('abc', 'def'))
 
 	# m1 = ['OOOOGOOOO',

@@ -48,4 +48,4 @@ def arr_to_string(arr):
     return ''.join(map(str, arr))
 
 if __name__ == '__main__':
-    print permute_keystring(2)
+    print permute_keystring(3)
